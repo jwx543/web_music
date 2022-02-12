@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.agile.server.dao")
+@MapperScan("com.agile.server.mapper")
 public class ServerApplication {
 
     public static void main(String[] args) {
