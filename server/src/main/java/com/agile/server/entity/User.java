@@ -16,7 +16,7 @@ public class User {
 
     private String pwd;
 
-    private Date birthdat;
+    private Date birthday;
 
     private String phone;
 
@@ -26,7 +26,7 @@ public class User {
 
     private String avator;
 
-    private Date createTime;
-
     private Date updateTime;
+
+    private Date createTime;
 }
