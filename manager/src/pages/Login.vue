@@ -22,9 +22,9 @@
 
 <script>
 
-import {mixin} from "@/mixins"
-import {HttpManager} from "@/api";
-import {INFO, MUSICNAME} from "@/enums";
+import {mixin} from "../mixins"
+import {HttpManager} from "../api";
+import {INFO, MUSICNAME} from "../enums";
 
 export default {
     mixins: [mixin],

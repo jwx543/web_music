@@ -8,12 +8,12 @@ const constantRoutes = [
         path: '/Home',
         component: resolve => require(['../pages/Home.vue'], resolve),
         meta: { title: '自述文件' },
-        // children: [
-        //     {
-        //         path: '/Info',
-        //         component: resolve => require(['../pages/InfoPage.vue'], resolve),
-        //         meta: { title: 'Info' }
-        //     },
+        children: [
+            {
+                path: '/Info',
+                component: resolve => require(['../pages/InfoPage.vue'], resolve),
+                meta: { title: 'Info' }
+            },
         //     {
         //         path: '/song',
         //         component: resolve => require(['../pages/SongPage.vue'], resolve),
@@ -49,7 +49,7 @@ const constantRoutes = [
         //         component: resolve => require(['../pages/CollectPage.vue'], resolve),
         //         meta: { title: 'Collect' }
         //     }
-        // ]
+        ]
     },
     {
         path: '/',
