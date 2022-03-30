@@ -80,17 +80,183 @@ import {HttpManager} from "../api/index"
 export default {
     mixins: [mixin],
     data(){
-
+        return {
+            user: [],
+            userSex: {
+                columns: ['性别', '总数'],
+                rows: [
+                    {'性别': '男', '总数': 0},
+                    {'性别': '女', '总数': 0}
+                ]
+            },
+            singerSex: {
+                columns: ['性别', '总数'],
+                rows: [
+                    {'性别': '男', '总数': 0},
+                    {'性别': '女', '总数': 0}
+                ]
+            },
+            country: {
+                columns: ['国家', '总数'],
+                rows: [
+                    { '国家': '中国', '总数': 0 },
+                    { '国家': '韩国', '总数': 0 },
+                    { '国家': '意大利', '总数': 0 },
+                    { '国家': '新加坡', '总数': 0 },
+                    { '国家': '美国', '总数': 0 },
+                    { '国家': '马来西亚', '总数': 0 },
+                    { '国家': '西班牙', '总数': 0 },
+                    { '国家': '日本', '总数': 0 }
+                ]
+            },
+            optionsUserSex: {
+                color: ['#87CEFA', '#FFC0CB']
+            },
+            optionsSex: {
+                color: ['#1E90FF', '#7B68EE']
+            },
+            optionsCountry: {
+                color: ['#FEED78'],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                }
+            },
+            optionsSongStyle: {
+                color: ['#FD8A61'],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                }
+            },
+            songStyle: {
+                columns: ['风格', '总数'],
+                rows: [
+                    { '风格': '华语', '总数': 0 },
+                    { '风格': '粤语', '总数': 0 },
+                    { '风格': '欧美', '总数': 0 },
+                    { '风格': '日韩', '总数': 0 },
+                    { '风格': 'BGM', '总数': 0 },
+                    { '风格': '轻音乐', '总数': 0 },
+                    { '风格': '乐器', '总数': 0 }
+                ]
+            },
+            userCount: 0,
+            songCount: 0,
+            singerCount: 0,
+            songListCount: 0
+        }
     },
     // mounted:在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
     mounted() {
+        this.getUser()
+        this.getSinger()
+        this.getSong()
+        this.getSongList()
     },
     methods: {
-
+        getUser() {
+            HttpManager.getAllUser().then(res => {
+                this.userCount = res.length
+                this.userSex.rows[0]['总数'] = this.setSex(1, res)
+                this.userSex.rows[1]['总数'] = this.setSex(0, res)
+            })
+        },
+        setSex(sex, arr){
+            let count = 0
+            for(let item of arr){
+                if(sex === item.sex){
+                    count++
+                }
+            }
+            return count
+        },
+        getCountry(val){
+            for(let item of this.country.rows){
+                if(val.includes(item['国家'])){
+                    item['总数']++
+                    break
+                }
+            }
+        },
+        getStyle(val){
+            for(let item of this.songStyle.rows){
+                if(val.includes(item['风格'])){
+                    item['总数']++
+                }
+            }
+        },
+        getSinger(){
+            HttpManager.getAllSinger().then(res => {
+                this.singerSex = res.length
+                this.singerSex.rows[0]['总数'] = this.setSex(1, res)
+                this.singerSex.rows[1]['总数'] = this.setSex(0, res)
+                for(let item of res){
+                    this.getCountry(item.location)
+                }
+            }).catch(err => {
+                console.error(err)
+            })
+        },
+        getSong(){
+            HttpManager.getAllSong().then(res => {
+                this.songCount = res.length
+            }).catch(err => {
+                console.error(err)
+            })
+        },
+        getSongList () {
+            HttpManager.getSongList().then(res => {
+                this.songListCount = res.length
+                for (let item of res) {
+                    this.getStyle(item.style)
+                }
+            }).catch(err => {
+                console.error(err)
+            })
+        }
     }
 }
 </script>
 
 <style scoped>
+.grid-content {
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
+.grid-cont-right {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+}
+
+.grid-num {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.cav-info {
+    border-radius: 6px;
+    overflow: hidden;
+}
 
 </style>
