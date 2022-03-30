@@ -28,7 +28,7 @@ import _ctrEvent from "../../utils/ctr-event";
 export default {
     data() {
         return{
-            collapse: false
+            collapse: false,
             items:[
                 {
                     icon: 'el-icon-s-data',

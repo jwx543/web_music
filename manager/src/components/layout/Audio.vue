@@ -14,7 +14,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-    name: "Audio"
+    name: "Audio",
     computed:{
         ...mapGetters([
             'url',
