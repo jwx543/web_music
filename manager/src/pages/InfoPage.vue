@@ -204,7 +204,7 @@ export default {
         },
         getSinger(){
             HttpManager.getAllSinger().then(res => {
-                this.singerSex = res.length
+                this.singerCount = res.length
                 this.singerSex.rows[0]['总数'] = this.setSex(1, res)
                 this.singerSex.rows[1]['总数'] = this.setSex(0, res)
                 for(let item of res){

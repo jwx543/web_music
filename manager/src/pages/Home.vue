@@ -1,28 +1,27 @@
 <template>
     <div>
-        <header></header>
-        <aside></aside>
+        <web-header></web-header>
+        <web-aside></web-aside>
         <div class="content-box" :class="{'content-collapse':collapse}">
             <div class="content">
                 <router-view></router-view>
             </div>
         </div>
-        <audio></audio>
+        <web-audio></web-audio>
     </div>
-
 </template>
 
 <script>
-import Header from "../components/layout/Header";
-import Audio from "../components/layout/Audio";
-import Aside from "../components/layout/Aside";
+import WebHeader from "../components/layout/WebHeader";
+import WebAudio from "../components/layout/WebAudio";
+import WebAside from "../components/layout/WebAside";
 import _ctrEvent from "../utils/ctr-event";
 
 export default {
     components: {
-        Header,
-        Audio,
-        Aside
+        WebHeader,
+        WebAudio,
+        WebAside
     },
     data(){
         return {

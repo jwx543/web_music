@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <!-- 折叠按钮 -->
-        <div class="collapse-btn" @click="collapseChage">
+        <div class="collapse-btn" @click="collapseChange">
             <i class="el-icon-s-unfold"></i>
         </div>
         <div class="logo">{{musicName}}</div>
@@ -13,13 +13,13 @@
                 </div>
                 <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
-          <span class="el-dropdown-link">
-            {{username}}
-            <i class="el-icon-caret-bottom"></i>
-          </span>
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item command="loginout">退出登录</el-dropdown-item>
-                    </el-dropdown-menu>
+                <span class="el-dropdown-link">
+                    {{username}}
+                    <i class="el-icon-caret-bottom"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="loginout">退出登录</el-dropdown-item>
+                </el-dropdown-menu>
                 </el-dropdown>
             </div>
         </div>
@@ -38,7 +38,7 @@ export default {
             collapse: true,
             fullscreen: false,
             username: 'admin',
-            userPic: require('@/assets/images/user.jpg'),
+            userPic: require('../../assets/images/user.jpg'),
             musicName: MUSICNAME
         }
     },

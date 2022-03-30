@@ -10,7 +10,7 @@ const constantRoutes = [
         meta: { title: '自述文件' },
         children: [
             {
-                path: '/Info',
+                path: '/info',
                 component: resolve => require(['../pages/InfoPage.vue'], resolve),
                 meta: { title: 'Info' }
             },
