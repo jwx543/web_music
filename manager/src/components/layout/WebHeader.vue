@@ -38,7 +38,7 @@ export default {
             collapse: true,
             fullscreen: false,
             username: 'admin',
-            userPic: require('../../assets/images/user.jpg'),
+            userPic: require('../../assets/images/user.png'),
             musicName: MUSICNAME
         }
     },
@@ -69,9 +69,9 @@ export default {
     width: 100%;
     height: 70px;
     font-size: 22px;
-    color: #B0B3B2;
-    background: #1A1B1C;
-    box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.3);
+    color: #fef4a9;
+    background: #3b9a9c;
+    box-shadow: 0 0 8px 2px #3b9a9c;
 }
 
 .collapse-btn {
@@ -84,7 +84,6 @@ export default {
 .header .logo {
     float: left;
     width: 250px;
-    font-family: 26px;
     line-height: 70px;
 }
 
@@ -115,12 +114,8 @@ export default {
 }
 
 .el-dropdown-link {
-    color: #B0B3B2;
+    color: #78fee0;
     cursor: pointer;
-}
-
-.el-dropdown-menu__item {
-    text-align: center;
 }
 
 </style>

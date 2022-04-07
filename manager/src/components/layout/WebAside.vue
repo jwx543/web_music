@@ -4,9 +4,9 @@
             class="sidebar-el-menu"
             :default-active="onRoutes"
             :collapse="collapse"
-            background-color="#242526"
-            text-color="#B0B3B2"
-            active-text-color="#ffffff"
+            background-color="#3b9a9c"
+            text-color="#F5F0F6"
+            active-text-color="#fef4a9"
             unique-opened
             router
         >
@@ -70,7 +70,7 @@ export default {
 .sidebar {
     display: block;
     position: absolute;
-    background-color: #334256;
+    background-color: #6b778d;
     left: 0;
     top: 70px;
     bottom: 0;

@@ -7,20 +7,17 @@
                 <router-view></router-view>
             </div>
         </div>
-        <web-audio></web-audio>
     </div>
 </template>
 
 <script>
 import WebHeader from "../components/layout/WebHeader";
-import WebAudio from "../components/layout/WebAudio";
 import WebAside from "../components/layout/WebAside";
 import _ctrEvent from "../utils/ctr-event";
 
 export default {
     components: {
         WebHeader,
-        WebAudio,
         WebAside
     },
     data(){
