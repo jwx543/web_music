@@ -7,6 +7,20 @@
         <div class="logo">{{musicName}}</div>
         <div class="header-right">
             <div class="header-user-con">
+                <div>
+                    <el-badge :value=userCount class="item" type="primary">
+                        <el-button size="small">用户数量</el-button>
+                    </el-badge>
+                    <el-badge :value=singerCount class="item" type="primary">
+                        <el-button size="small">歌手数量</el-button>
+                    </el-badge>
+                    <el-badge :value=songCount class="item" type="primary">
+                        <el-button size="small">歌曲数量</el-button>
+                    </el-badge>
+                    <el-badge :value=songListCount class="item" type="primary">
+                        <el-button size="small">歌单数量</el-button>
+                    </el-badge>
+                </div>
                 <!-- 用户头像 -->
                 <div class="user-avator">
                     <img :src="userPic" />
@@ -30,6 +44,7 @@
 import _ctrEvent from "../../utils/ctr-event";
 import {SIGN_IN, MUSICNAME} from "../../enums";
 import {mixin} from "../../mixins";
+import {HttpManager} from "../../api";
 
 export default {
     mixins: [mixin],
@@ -39,13 +54,21 @@ export default {
             fullscreen: false,
             username: 'admin',
             userPic: require('../../assets/images/user.png'),
-            musicName: MUSICNAME
+            musicName: MUSICNAME,
+            userCount: 0,
+            songCount: 0,
+            singerCount: 0,
+            songListCount: 0
         }
     },
     mounted() {
         if(document.body.clientWidth < 1500){
             this.collapseChange()
         }
+        this.getUser()
+        this.getSinger()
+        this.getSong()
+        this.getSongList()
     },
     methods: {
         handleCommand(command){
@@ -56,6 +79,32 @@ export default {
         collapseChange(){
             this.collapse = !this.collapse
             _ctrEvent.$emit('collapse', this.collapse)
+        },
+        getUser() {
+            HttpManager.getAllUser().then(res => {
+                this.userCount = res.length
+            })
+        },
+        getSinger(){
+            HttpManager.getAllSinger().then(res => {
+                this.singerCount = res.length
+            }).catch(err => {
+                console.error(err)
+            })
+        },
+        getSong(){
+            HttpManager.getAllSong().then(res => {
+                this.songCount = res.length
+            }).catch(err => {
+                console.error(err)
+            })
+        },
+        getSongList () {
+            HttpManager.getSongList().then(res => {
+                this.songListCount = res.length
+            }).catch(err => {
+                console.error(err)
+            })
         }
     }
 }
@@ -116,6 +165,17 @@ export default {
 .el-dropdown-link {
     color: #78fee0;
     cursor: pointer;
+}
+
+.item {
+    margin-top: 10px;
+    margin-right: 40px;
+
+}
+.item button{
+    background: #3b9a9c;
+    color: #fef4a9;
+    border-color: #4bc2c5;
 }
 
 </style>

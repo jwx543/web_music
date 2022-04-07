@@ -11,9 +11,13 @@ import store from './store/index'
 import './assets/css/main.css'
 
 
+
 Vue.use(Vuex)
 Vue.use(VCharts)
 Vue.use(Element)
+
+import echarts from 'echarts'
+Vue.prototype.$echarts=echarts
 
 new Vue({
     el: '#app',
