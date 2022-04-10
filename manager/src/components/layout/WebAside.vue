@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import _ctrEvent from "../../utils/ctr-event";
+import newPage from "../../utils/newPage";
 
 export default {
     data() {
@@ -42,7 +42,7 @@ export default {
                 },
                 {
                     icon: 'el-icon-user-solid',
-                    index: 'consumer',
+                    index: 'user',
                     title: '用户管理'
                 },
                 {
@@ -59,7 +59,7 @@ export default {
         }
     },
     created(){
-        _ctrEvent.$on('collapse', msg => {
+        newPage.$on('collapse', msg => {
             this.collapse = msg
         })
     }

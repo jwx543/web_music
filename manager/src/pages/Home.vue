@@ -13,7 +13,7 @@
 <script>
 import WebHeader from "../components/layout/WebHeader";
 import WebAside from "../components/layout/WebAside";
-import _ctrEvent from "../utils/ctr-event";
+import newPage from "../utils/newPage";
 
 export default {
     components: {
@@ -26,7 +26,7 @@ export default {
         }
     },
     created () {
-        _ctrEvent.$on('collapse', msg => {
+        newPage.$on('collapse', msg => {
             this.collapse = msg
         })
     }

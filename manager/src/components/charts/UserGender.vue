@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import {mixin} from "../../mixins";
+import {myFunction} from "../../utils";
 import {HttpHandler} from "../../api";
 
 export default {
     name: "UserGender",
-    mixins: [mixin],
+    mixins: [myFunction],
     data() {
         return {
             ChartsInstance: null,

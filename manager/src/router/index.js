@@ -15,24 +15,14 @@ const constantRoutes = [
                 meta: { title: 'Info' }
             },
             {
-                path: '/song',
-                component: resolve => require(['../pages/SongPage.vue'], resolve),
-                meta: { title: 'Song' }
-            },
-            {
                 path: '/Singer',
                 component: resolve => require(['../pages/SingerPage.vue'], resolve),
                 meta: { title: 'Singer' }
             },
             {
-                path: '/SongList',
-                component: resolve => require(['../pages/SongListPage.vue'], resolve),
-                meta: { title: 'SongList' }
-            },
-            {
-                path: '/ListSong',
-                component: resolve => require(['../pages/ListSongPage.vue'], resolve),
-                meta: { title: 'ListSong' }
+                path: '/song',
+                component: resolve => require(['../pages/SongPage.vue'], resolve),
+                meta: { title: 'Song' }
             },
             {
                 path: '/Comment',
@@ -40,15 +30,25 @@ const constantRoutes = [
                 meta: { title: 'Comment' }
             },
             {
-                path: '/Consumer',
-                component: resolve => require(['../pages/ConsumerPage.vue'], resolve),
-                meta: { title: 'Consumer' }
+                path: '/User',
+                component: resolve => require(['../pages/UserPage.vue'], resolve),
+                meta: { title: 'User' }
             },
             {
-                path: '/Collect',
-                component: resolve => require(['../pages/CollectPage.vue'], resolve),
-                meta: { title: 'Collect' }
-            }
+                path: '/Save',
+                component: resolve => require(['../pages/SavePage.vue'], resolve),
+                meta: { title: 'Save' }
+            },
+            {
+                path: '/SongList',
+                component: resolve => require(['../pages/SongListPage.vue'], resolve),
+                meta: { title: 'SongList' }
+            },
+            {
+                path: '/ListContent',
+                component: resolve => require(['../pages/ListContentPage.vue'], resolve),
+                meta: { title: 'ListContent' }
+            },
         ]
     },
     {

@@ -38,20 +38,20 @@
 </template>
 
 <script>
-import _ctrEvent from "../../utils/ctr-event";
-import {SIGN_IN, MUSICNAME} from "../../enums";
-import {mixin} from "../../mixins";
+import newPage from "../../utils/newPage";
+import {SIGN_IN, MUSIC_NAME} from "../../constants";
+import {myFunction} from "../../utils";
 import {HttpHandler} from "../../api";
 
 export default {
-    mixins: [mixin],
+    mixins: [myFunction],
     data(){
         return{
             collapse: true,
             fullscreen: false,
             username: 'admin',
             userPic: require('../../assets/images/user.png'),
-            musicName: MUSICNAME,
+            musicName: MUSIC_NAME,
             userCount: 0,
             songCount: 0,
             singerCount: 0,
@@ -70,12 +70,12 @@ export default {
     methods: {
         handleCommand(command){
             if(command === 'loginOut'){
-                this.routerManager(SIGN_IN, {path: SIGN_IN})
+                this.routerHandler(SIGN_IN, {path: SIGN_IN})
             }
         },
         collapseChange(){
             this.collapse = !this.collapse
-            _ctrEvent.$emit('collapse', this.collapse)
+            newPage.$emit('collapse', this.collapse)
         },
         getUser() {
             HttpHandler.getUserInfo().then(res => {

@@ -22,16 +22,16 @@
 
 <script>
 
-import {mixin} from "../mixins"
+import {myFunction} from "../utils"
 import {HttpHandler} from "../api";
-import {INFO, MUSICNAME} from "../enums";
+import {INFO, MUSIC_NAME} from "../constants";
 
 export default {
-    mixins: [mixin],
+    mixins: [myFunction],
     data: function (){
         return{
             labelPosition: 'left',
-            musicName: MUSICNAME,
+            musicName: MUSIC_NAME,
             ruleForm:{
                 username: 'admin',
                 password: '123'
@@ -58,7 +58,7 @@ export default {
 
             HttpHandler.getStatus(params).then(res => {
                 if(res.code === 1){
-                    this.routerManager(INFO, {path: INFO})
+                    this.routerHandler(INFO, {path: INFO})
                     this.$notify({
                         title: '欢迎回来',
                         type: 'success'

@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {mixin} from "../mixins"
+import {myFunction} from "../utils"
 import {HttpHandler} from "../api/index"
 import SongStyle from "../components/charts/SongStyle";
 import CountryPosition from "../components/charts/CountryPosition";
@@ -46,7 +46,7 @@ export default {
         UserGender,
         SingerGender
     },
-    mixins: [mixin],
+    mixins: [myFunction],
     data(){
         return {
             user: [],

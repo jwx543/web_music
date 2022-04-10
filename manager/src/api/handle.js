@@ -1,6 +1,6 @@
 import axios from 'axios'
 import router from '../router'
-import { BASE_URL } from '../enums'
+import { BASE_URL } from '../constants'
 
 axios.defaults.timeout = 6000
 axios.defaults.withCredentials = true

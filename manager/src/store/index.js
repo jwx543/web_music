@@ -1,4 +1,4 @@
-import { BASE_URL } from '../enums'
+import { BASE_URL } from '../constants'
 
 const store = {
     state: {
