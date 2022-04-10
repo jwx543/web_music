@@ -4,7 +4,7 @@
 
 <script>
 import {mixin} from "../../mixins";
-import {HttpManager} from "../../api";
+import {HttpHandler} from "../../api";
 
 export default {
     name: "SingerGender",
@@ -74,7 +74,7 @@ export default {
         },
 
         async getSinger() {
-            const p = HttpManager.getAllSinger().then(res => {
+            const p = HttpHandler.getSinger().then(res => {
                 this.singerCount = res.length
                 this.singerGender[0]['value'] = this.setGender(1, res)
                 this.singerGender[1]['value'] = this.setGender(0, res)

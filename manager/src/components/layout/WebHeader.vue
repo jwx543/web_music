@@ -44,7 +44,7 @@
 import _ctrEvent from "../../utils/ctr-event";
 import {SIGN_IN, MUSICNAME} from "../../enums";
 import {mixin} from "../../mixins";
-import {HttpManager} from "../../api";
+import {HttpHandler} from "../../api";
 
 export default {
     mixins: [mixin],
@@ -81,26 +81,26 @@ export default {
             _ctrEvent.$emit('collapse', this.collapse)
         },
         getUser() {
-            HttpManager.getAllUser().then(res => {
+            HttpHandler.getUserInfo().then(res => {
                 this.userCount = res.length
             })
         },
         getSinger(){
-            HttpManager.getAllSinger().then(res => {
+            HttpHandler.getSinger().then(res => {
                 this.singerCount = res.length
             }).catch(err => {
                 console.error(err)
             })
         },
         getSong(){
-            HttpManager.getAllSong().then(res => {
+            HttpHandler.getSong().then(res => {
                 this.songCount = res.length
             }).catch(err => {
                 console.error(err)
             })
         },
         getSongList () {
-            HttpManager.getSongList().then(res => {
+            HttpHandler.getSongList().then(res => {
                 this.songListCount = res.length
             }).catch(err => {
                 console.error(err)

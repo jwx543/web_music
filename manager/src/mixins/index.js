@@ -40,13 +40,6 @@ export const mixin = {
                 return value
             }
         },
-        toggleSex (value) {
-            if (value === '女') {
-                return 0
-            } else if (value === '男') {
-                return 1
-            }
-        },
         // 更新图片
         handleAvatarSuccess (res, file) {
             if (res.code === 1) {
@@ -115,9 +108,6 @@ export const mixin = {
                     this.$router.push({ path })
                     break
             }
-        },
-        goBack (step = -1) {
-            this.$router.go(step)
         }
     }
 }

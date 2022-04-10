@@ -23,7 +23,7 @@
 <script>
 
 import {mixin} from "../mixins"
-import {HttpManager} from "../api";
+import {HttpHandler} from "../api";
 import {INFO, MUSICNAME} from "../enums";
 
 export default {
@@ -56,7 +56,7 @@ export default {
             params.append('name', this.ruleForm.username)
             params.append('password', this.ruleForm.password)
 
-            HttpManager.getLoginStatus(params).then(res => {
+            HttpHandler.getStatus(params).then(res => {
                 if(res.code === 1){
                     this.routerManager(INFO, {path: INFO})
                     this.$notify({

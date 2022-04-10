@@ -4,7 +4,7 @@
 
 <script>
 import {mixin} from "../../mixins";
-import {HttpManager} from "../../api";
+import {HttpHandler} from "../../api";
 
 export default {
     name: "SongStyle",
@@ -63,7 +63,7 @@ export default {
         },
 
         async getSongList() {
-            const p = await HttpManager.getSongList().then(res => {
+            const p = await HttpHandler.getSongList().then(res => {
                 for (let item of res) {
                     this.getStyle(item.style)
                 }

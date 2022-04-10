@@ -33,7 +33,7 @@
 
 <script>
 import {mixin} from "../mixins"
-import {HttpManager} from "../api/index"
+import {HttpHandler} from "../api/index"
 import SongStyle from "../components/charts/SongStyle";
 import CountryPosition from "../components/charts/CountryPosition";
 import UserGender from "../components/charts/UserGender";
@@ -65,26 +65,26 @@ export default {
     },
     methods: {
         getUser() {
-            HttpManager.getAllUser().then(res => {
+            HttpHandler.getUserInfo().then(res => {
                 this.userCount = res.length
             })
         },
         getSinger(){
-            HttpManager.getAllSinger().then(res => {
+            HttpHandler.getSinger().then(res => {
                 this.singerCount = res.length
             }).catch(err => {
                 console.error(err)
             })
         },
         getSong(){
-            HttpManager.getAllSong().then(res => {
+            HttpHandler.getSong().then(res => {
                 this.songCount = res.length
             }).catch(err => {
                 console.error(err)
             })
         },
         getSongList () {
-            HttpManager.getSongList().then(res => {
+            HttpHandler.getSongList().then(res => {
                 this.songListCount = res.length
             }).catch(err => {
                 console.error(err)

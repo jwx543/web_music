@@ -4,7 +4,7 @@
 
 <script>
 import {mixin} from "../../mixins";
-import {HttpManager} from "../../api";
+import {HttpHandler} from "../../api";
 
 export default {
     name: "CountryPosition",
@@ -76,7 +76,7 @@ export default {
         },
 
         async getSinger(){
-            const p = await HttpManager.getAllSinger().then(res => {
+            const p = await HttpHandler.getSinger().then(res => {
                 for(let item of res){
                     this.getCountry(item.location)
                 }
