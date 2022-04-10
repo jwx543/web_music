@@ -31,9 +31,14 @@ export default {
             collapse: false,
             items:[
                 {
-                    icon: 'el-icon-s-data',
+                    icon: 'el-icon-s-home',
                     index: 'info',
                     title: '系统首页'
+                },
+                {
+                    icon: 'el-icon-microphone',
+                    index: 'singer',
+                    title: '歌手管理'
                 },
                 {
                     icon: 'el-icon-user-solid',
@@ -41,12 +46,7 @@ export default {
                     title: '用户管理'
                 },
                 {
-                    icon: 'el-icon-service',
-                    index: 'singer',
-                    title: '歌手管理'
-                },
-                {
-                    icon: 'el-icon-document',
+                    icon: 'el-icon-files',
                     index: 'songList',
                     title: '歌单管理'
                 }

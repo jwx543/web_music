@@ -2,20 +2,6 @@
     <div>
         <el-row :gutter="20">
             <el-col :span="12">
-                <h3 style="margin: 20px 0">用户性别比例</h3>
-                <div class="cav-info" style="background-color: #DADDD8">
-                    <user-gender></user-gender>
-                </div>
-            </el-col>
-            <el-col :span="12">
-                <h3 style="margin: 20px 0">歌手性别比例</h3>
-                <div class="cav-info" style="background-color: #DADDD8">
-                    <singer-gender></singer-gender>
-                </div>
-            </el-col>
-        </el-row>
-        <el-row :gutter="20">
-            <el-col :span="12">
                 <h3 style="margin: 20px 0">歌曲类型分布</h3>
                 <div class="cav-info" style="background-color: #DADDD8">
                     <song-style></song-style>
@@ -25,6 +11,20 @@
                 <h3 style="margin: 20px 0">歌手国籍分布</h3>
                 <div class="cav-info" style="background-color: #DADDD8">
                     <country-position></country-position>
+                </div>
+            </el-col>
+        </el-row>
+        <el-row :gutter="20">
+            <el-col :span="12">
+                <h3 style="margin: 20px 0">用户性别比例</h3>
+                <div class="cav-info" style="background-color: #DADDD8">
+                    <user-gender></user-gender>
+                </div>
+            </el-col>
+            <el-col :span="12">
+                <h3 style="margin: 20px 0">歌手性别比例</h3>
+                <div class="cav-info" style="background-color: #DADDD8">
+                    <singer-gender></singer-gender>
                 </div>
             </el-col>
         </el-row>

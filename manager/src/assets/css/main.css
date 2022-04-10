@@ -47,7 +47,8 @@ a {
 
 .container {
     padding: 20px;
-    background: #fff;
+    /*background: #fff;*/
+    background: #E6E6E6;
     border: 1px solid #ddd;
     border-radius: 5px;
 }

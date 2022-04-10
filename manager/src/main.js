@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import VCharts from 'v-charts'
+// import VCharts from 'v-charts'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -13,7 +13,7 @@ import './assets/css/main.css'
 
 
 Vue.use(Vuex)
-Vue.use(VCharts)
+// Vue.use(VCharts)
 Vue.use(Element)
 
 import echarts from 'echarts'
