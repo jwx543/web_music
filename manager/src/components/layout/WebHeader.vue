@@ -1,6 +1,5 @@
 <template>
     <div class="header">
-        <!-- 折叠按钮 -->
         <div class="collapse-btn" @click="collapseChange">
             <i class="el-icon-s-unfold"></i>
         </div>
@@ -21,18 +20,16 @@
                         <el-button size="small">歌单数量</el-button>
                     </el-badge>
                 </div>
-                <!-- 用户头像 -->
-                <div class="user-avator">
+                <div class="userAvator">
                     <img :src="userPic" />
                 </div>
-                <!-- 用户名下拉菜单 -->
-                <el-dropdown class="user-name" trigger="click" @command="handleCommand">
+                <el-dropdown class="userName" trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
                     {{username}}
                     <i class="el-icon-caret-bottom"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="loginout">退出登录</el-dropdown-item>
+                    <el-dropdown-item command="loginOut">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
                 </el-dropdown>
             </div>
@@ -72,7 +69,7 @@ export default {
     },
     methods: {
         handleCommand(command){
-            if(command === 'loginout'){
+            if(command === 'loginOut'){
                 this.routerManager(SIGN_IN, {path: SIGN_IN})
             }
         },
@@ -147,15 +144,15 @@ export default {
     align-items: center;
 }
 
-.user-name {
+.userName {
     margin-left: 10px;
 }
 
-.user-avator {
+.userAvator {
     margin-left: 20px;
 }
 
-.user-avator img {
+.userAvator img {
     display: block;
     width: 40px;
     height: 40px;
