@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        
+
         <el-dialog title="添加用户" :visible.sync="centerDialogVisible" width="400px" center>
             <el-form :model="registerForm" status-icon :rules="rules" ref="registerForm" label-width="70px" class="demo-ruleForm">
                 <el-form-item label="用户名" prop="username" size="mini">
