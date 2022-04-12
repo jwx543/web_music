@@ -2,10 +2,7 @@
     <div class="table">
         <div class="container">
             <div class="table-box">
-                <el-button
-                    class="handle-del mr10"
-                    type="primary" size="mini"
-                    @click="deleteAll">批量删除</el-button>
+                <el-button class="handle-del mr10" type="primary" size="mini" @click="deleteAll">批量删除</el-button>
                 <el-input
                     v-model="search_name"
                     class="search-input mr10"
@@ -52,7 +49,7 @@
                         <el-button size="mini" @click="showInfo(scope.row)">简介</el-button>
                     </template>
                 </el-table-column>
-                <el-table-column label="歌曲管理" width="90" align="center">
+                <el-table-column label="歌曲管理" width="100" align="center">
                     <template v-slot="scope">
                         <el-button size="mini" @click="editSong(scope.row.id, scope.row.name)">歌曲</el-button>
                     </template>
