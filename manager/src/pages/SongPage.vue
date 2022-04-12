@@ -153,7 +153,7 @@ export default {
             },
             pageSize: 5,
             currentPage: 1,
-            idNow: -1
+            idx: -1
         }
     },
     computed: {
@@ -238,7 +238,7 @@ export default {
         },
 
         doEdit (row) {
-            this.idNow = row.id
+            this.idx = row.id
             this.form = {
                 id: row.id,
                 singerId: row.singerId,
@@ -286,7 +286,7 @@ export default {
         },
 
         deleteRow () {
-            HttpHandler.deleteSong(this.idNow)
+            HttpHandler.deleteSong(this.idx)
                 .then(response => {
                     if (response) {
                         this.getData()

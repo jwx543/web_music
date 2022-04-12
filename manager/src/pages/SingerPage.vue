@@ -198,7 +198,7 @@ export default {
             },
             pageSize: 10,
             currentPage: 1,
-            idNow: -1,
+            idx: -1,
             infoData: ''
         }
     },
@@ -237,7 +237,7 @@ export default {
         doEdit (row) {
             this.editVisible = true
             let datetime = row.birth
-            this.idNow = row.id
+            this.idx = row.id
             this.form = {
                 id: row.id,
                 name: row.name,
@@ -326,7 +326,7 @@ export default {
         },
 
         deleteRow () {
-            HttpHandler.deleteSinger(this.idNow)
+            HttpHandler.deleteSinger(this.idx)
                 .then(res => {
                     if (res) {
                         this.getData()

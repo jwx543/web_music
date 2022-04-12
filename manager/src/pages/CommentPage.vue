@@ -56,7 +56,7 @@ export default {
                 type: '',
                 up: ''
             },
-            idNow: -1
+            idx: -1
         }
     },
     watch: {
@@ -108,7 +108,7 @@ export default {
         },
 
         doEdit (row) {
-            this.idNow = row.id
+            this.idx = row.id
             this.form = {
                 id: row.id,
                 userId: row.userId,
@@ -152,7 +152,7 @@ export default {
         },
 
         deleteRow () {
-            HttpHandler.deleteComment(this.idNow)
+            HttpHandler.deleteComment(this.idx)
                 .then(res => {
                     if (res) {
                         this.getData()
