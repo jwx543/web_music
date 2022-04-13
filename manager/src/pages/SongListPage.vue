@@ -104,11 +104,11 @@
                 <el-form-item label="标题" size="mini">
                     <el-input v-model="form.title"></el-input>
                 </el-form-item>
-                <el-form-item label="简介" size="mini">
-                    <el-input  type="textarea" v-model="form.introduction"></el-input>
-                </el-form-item>
                 <el-form-item label="风格" size="mini">
                     <el-input v-model="form.style"></el-input>
+                </el-form-item>
+                <el-form-item label="简介" size="mini">
+                    <el-input  type="textarea" :rows="10" v-model="form.introduction"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -135,6 +135,8 @@ export default {
     },
     data () {
         return {
+            tableData: [],
+            Temp: [],
             registerForm: {
                 title: '',
                 introduction: '',
@@ -142,17 +144,15 @@ export default {
             },
             form: {
                 id: '',
-                title: '',
                 pic: '',
+                title: '',
                 introduction: '',
                 style: ''
             },
-            tableData: [],
-            Temp: [],
             multipleSelection: [],
             centerDialogVisible: false,
-            editVisible: false,
             delVisible: false,
+            editVisible: false,
             infoVisible: false,
             infoData: '',
             search_word: '',
@@ -184,43 +184,26 @@ export default {
         this.getData()
     },
     methods: {
+
         showInfo(row){
             this.infoVisible = true;
             this.infoData = row.introduction
-        },
-
-        updateUrl (id) {
-            return `${this.$store.state.HOST}/songList/images/update?id=${id}`
-        },
-
-        getData () {
-            this.Temp = []
-            this.tableData = []
-            HttpHandler.getSongList().then((res) => {
-                this.Temp = res
-                this.tableData = res
-                this.currentPage = 1
-            })
         },
 
         handleChange (val) {
             this.currentPage = val
         },
 
-        getContent (id) {
-            this.routerHandler(LIST_CONTENT, { path: LIST_CONTENT, query: { id } })
-        },
-
-        getComment (id) {
-            this.routerHandler(COMMENT, { path: COMMENT, query: { id, type: 1 } })
+        updateUrl (id) {
+            return `${this.$store.state.HOST}/songList/images/update?id=${id}`
         },
 
         doEdit (row) {
             this.idx = row.id
             this.form = {
                 id: row.id,
-                title: row.title,
                 pic: row.pic,
+                title: row.title,
                 introduction: row.introduction,
                 style: row.style
             }
@@ -230,8 +213,8 @@ export default {
         saveEdit () {
             let params = new URLSearchParams()
             params.append('id', this.form.id)
-            params.append('title', this.form.title)
             params.append('pic', this.form.pic)
+            params.append('title', this.form.title)
             params.append('introduction', this.form.introduction)
             params.append('style', this.form.style)
             HttpHandler.updateSongList(params)
@@ -255,10 +238,18 @@ export default {
             this.editVisible = false
         },
 
+        getContent (id) {
+            this.routerHandler(LIST_CONTENT, { path: LIST_CONTENT, query: { id } })
+        },
+
+        getComment (id) {
+            this.routerHandler(COMMENT, { path: COMMENT, query: { id, type: 1 } })
+        },
+
         add_songList () {
             let params = new URLSearchParams()
-            params.append('title', this.registerForm.title)
             params.append('pic', '/images/songListPic/123.jpg')
+            params.append('title', this.registerForm.title)
             params.append('introduction', this.registerForm.introduction)
             params.append('style', this.registerForm.style)
             HttpHandler.addSongList(params).then(res => {
@@ -279,6 +270,16 @@ export default {
                 console.error(err)
             })
             this.centerDialogVisible = false
+        },
+
+        getData () {
+            this.Temp = []
+            this.tableData = []
+            HttpHandler.getSongList().then((res) => {
+                this.Temp = res
+                this.tableData = res
+                this.currentPage = 1
+            })
         },
 
         deleteRow () {

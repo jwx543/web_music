@@ -145,7 +145,7 @@
                     <el-input v-model="form.location"></el-input>
                 </el-form-item>
                 <el-form-item label="简介" size="mini">
-                    <el-input type="textarea" v-model="form.introduction"></el-input>
+                    <el-input type="textarea" :rows="6" v-model="form.introduction"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -172,15 +172,15 @@ export default {
     },
     data () {
         return {
-            registerForm: {
-                name: '',
-                gender: '',
-                birth: '',
-                location: '',
-                introduction: ''
-            },
             tableData: [],
             Temp: [],
+            registerForm: {
+                name: '',
+                location: '',
+                gender: '',
+                birth: '',
+                introduction: ''
+            },
             multipleSelection: [],
             centerDialogVisible: false,
             editVisible: false,
@@ -189,9 +189,9 @@ export default {
             search_name: '',
             form: {
                 id: '',
+                pic: '',
                 name: '',
                 gender: '',
-                pic: '',
                 birth: '',
                 location: '',
                 introduction: ''
@@ -225,13 +225,14 @@ export default {
         this.getData()
     },
     methods: {
-        getCurrentChange (val) {
-            this.currentPage = val
-        },
 
         showInfo(row){
             this.infoVisible = true;
             this.infoData = row.introduction
+        },
+
+        getCurrentChange (val) {
+            this.currentPage = val
         },
 
         doEdit (row) {
@@ -240,9 +241,9 @@ export default {
             this.idx = row.id
             this.form = {
                 id: row.id,
+                birth: datetime,
                 name: row.name,
                 gender: row.sex,
-                birth: datetime,
                 location: row.location,
                 pic: row.pic,
                 introduction: row.introduction
@@ -253,9 +254,9 @@ export default {
             let datetime = this.getTime(new Date(this.form.birth))
             let params = new URLSearchParams()
             params.append('id', this.form.id)
+            params.append('pic', this.form.pic)
             params.append('name', this.form.name)
             params.append('sex', this.form.gender)
-            params.append('pic', this.form.pic)
             params.append('birth', datetime)
             params.append('location', this.form.location)
             params.append('introduction', this.form.introduction)
@@ -288,9 +289,9 @@ export default {
             let datetime = this.getTime(this.registerForm.birth)
             let params = new URLSearchParams()
             params.append('name', this.registerForm.name)
+            params.append('location', this.registerForm.location)
             params.append('sex', this.registerForm.gender)
             params.append('birth', datetime)
-            params.append('location', this.registerForm.location)
             params.append('pic', '/images/singerPic/hhh.jpg')
             params.append('introduction', this.registerForm.introduction)
             HttpHandler.addSinger(params)
@@ -325,6 +326,10 @@ export default {
             })
         },
 
+        editSong (id, name) {
+            this.routerHandler(SONG, {path: SONG, query: {id: id, name: name}})
+        },
+
         deleteRow () {
             HttpHandler.deleteSinger(this.idx)
                 .then(res => {
@@ -345,10 +350,6 @@ export default {
                     console.error(err)
                 })
             this.delVisible = false
-        },
-
-        editSong (id, name) {
-            this.routerHandler(SONG, {path: SONG, query: {id: id, name: name}})
         }
 
 

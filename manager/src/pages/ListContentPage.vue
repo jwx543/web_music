@@ -63,16 +63,16 @@ export default {
     },
     data () {
         return {
+            delVisible: false,
+            Temp: [],
+            multipleSelection: [],
             registerForm: {
                 singerName: '',
                 songName: ''
             },
             tableData: [],
-            Temp: [],
-            multipleSelection: [],
             centerDialogVisible: false,
             editVisible: false,
-            delVisible: false,
             search_word: '',
             idx: -1
         }
@@ -95,39 +95,6 @@ export default {
         this.getData()
     },
     methods: {
-        getData () {
-            this.Temp = []
-            this.tableData = []
-            HttpHandler.getListSongSongId(this.$route.query.id)
-                .then(res => {
-                    console.log(res)
-                    for (let item of res) {
-                        this.getSong(item.songId)
-                    }
-                })
-                .catch(err => {
-                    console.error(err)
-                })
-        },
-
-        getSong (id) {
-            HttpHandler.getSongId(id)
-                .then(res => {
-                    this.tableData.push(res[0])
-                    this.Temp.push(res[0])
-                })
-                .catch(err => {
-                    console.error(err)
-                })
-        },
-
-        getSongById () {
-            const id = this.registerForm.singerName + '-' + this.registerForm.songName;
-            HttpHandler.getSongSingerName(id)
-                .then(res => {
-                    this.addSong(res[0].id)
-                })
-        },
 
         addSong (id) {
             let params = new URLSearchParams()
@@ -152,6 +119,40 @@ export default {
                     console.error(err)
                 })
             this.centerDialogVisible = false
+        },
+
+        getSong (id) {
+            HttpHandler.getSongId(id)
+                .then(res => {
+                    this.tableData.push(res[0])
+                    this.Temp.push(res[0])
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+        },
+
+        getSongById () {
+            const id = this.registerForm.singerName + '-' + this.registerForm.songName;
+            HttpHandler.getSongSingerName(id)
+                .then(res => {
+                    this.addSong(res[0].id)
+                })
+        },
+
+        getData () {
+            this.Temp = []
+            this.tableData = []
+            HttpHandler.getListSongSongId(this.$route.query.id)
+                .then(res => {
+                    console.log(res)
+                    for (let item of res) {
+                        this.getSong(item.songId)
+                    }
+                })
+                .catch(err => {
+                    console.error(err)
+                })
         },
 
         deleteRow () {

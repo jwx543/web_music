@@ -84,7 +84,7 @@
                     <el-input v-model="form.introduction"></el-input>
                 </el-form-item>
                 <el-form-item label="歌词" size="mini">
-                    <el-input  type="textarea" v-model="form.lyric"></el-input>
+                    <el-input  type="textarea" :rows="10" v-model="form.lyric"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -123,6 +123,8 @@ export default {
     },
     data () {
         return {
+            tableData: [],
+            Temp: [],
             singerId: '',
             singerName: '',
             registerForm: {
@@ -131,8 +133,6 @@ export default {
                 introduction: '',
                 lyric: ''
             },
-            tableData: [],
-            Temp: [],
             multipleSelection: [],
             centerDialogVisible: false,
             lyricVisible: false,
@@ -145,11 +145,11 @@ export default {
                 singerId: '',
                 name: '',
                 introduction: '',
-                createTime: '',
-                updateTime: '',
                 pic: '',
                 lyric: '',
-                url: ''
+                url: '',
+                createTime: '',
+                updateTime: ''
             },
             pageSize: 5,
             currentPage: 1,
@@ -181,21 +181,14 @@ export default {
         this.getData()
     },
     methods: {
+
+        handleChange (val) {
+            this.currentPage = val
+        },
+
         showLyric(row){
           this.lyricVisible = true;
           this.lyricVisibleData = row.lyric
-        },
-
-        getData () {
-            this.Temp = []
-            this.tableData = []
-            HttpHandler.getSongSingerId(this.singerId).then((res) => {
-                this.Temp = res
-                this.tableData = res
-                this.currentPage = 1
-            }).catch(err => {
-                console.error(err)
-            })
         },
 
         updateUrl (id) {
@@ -204,37 +197,6 @@ export default {
 
         uploadSongUrl (id) {
             return `${this.$store.state.HOST}/song/url/update?id=${id}`
-        },
-
-        beforeSongUpload (file) {
-            const fileMsg = file.name.substring(file.name.lastIndexOf('.') + 1);
-            const extension = fileMsg === 'mp3'
-            if (!extension) {
-                this.$message({
-                    message: '仅支持mp3格式！',
-                    type: 'error'
-                })
-            }
-            return extension
-        },
-
-        handleChange (val) {
-            this.currentPage = val
-        },
-
-        handleSongSuccess (res, file) {
-            if (res.code === 1) {
-                this.getData()
-                this.$notify({
-                    title: '上传成功',
-                    type: 'success'
-                })
-            } else {
-                this.$notify({
-                    title: '上传失败',
-                    type: 'error'
-                })
-            }
         },
 
         doEdit (row) {
@@ -253,15 +215,11 @@ export default {
             this.editVisible = true
         },
 
-        getComment (id) {
-            this.routerHandler(COMMENT, { path: COMMENT, query: { id, type: 0 } })
-        },
-
         saveEdit () {
             let params = new URLSearchParams()
             params.append('id', this.form.id)
-            params.append('singerId', this.form.singerId)
             params.append('name', this.form.name)
+            params.append('singerId', this.form.singerId)
             params.append('introduction', this.form.introduction)
             params.append('lyric', this.form.lyric)
             HttpHandler.updateSong(params)
@@ -285,6 +243,49 @@ export default {
             this.editVisible = false
         },
 
+        beforeSongUpload (file) {
+            const fileMsg = file.name.substring(file.name.lastIndexOf('.') + 1);
+            const extension = fileMsg === 'mp3'
+            if (!extension) {
+                this.$message({
+                    message: '仅支持mp3格式！',
+                    type: 'error'
+                })
+            }
+            return extension
+        },
+
+        getComment (id) {
+            this.routerHandler(COMMENT, { path: COMMENT, query: { id, type: 0 } })
+        },
+
+        handleSongSuccess (res, file) {
+            if (res.code === 1) {
+                this.getData()
+                this.$notify({
+                    title: '上传成功',
+                    type: 'success'
+                })
+            } else {
+                this.$notify({
+                    title: '上传失败',
+                    type: 'error'
+                })
+            }
+        },
+
+        getData () {
+            this.Temp = []
+            this.tableData = []
+            HttpHandler.getSongSingerId(this.singerId).then((res) => {
+                this.Temp = res
+                this.tableData = res
+                this.currentPage = 1
+            }).catch(err => {
+                console.error(err)
+            })
+        },
+
         deleteRow () {
             HttpHandler.deleteSong(this.idx)
                 .then(response => {
@@ -305,25 +306,6 @@ export default {
                     console.error(err)
                 })
             this.delVisible = false
-        },
-
-        parseLyric (text) {
-            let pattern = /\[\d{2}:\d{2}.(\d{3}|\d{2})\]/g
-            let lines = text.split('\n')
-
-            let data = []
-
-            if (!(/\[.+\]/.test(text))) {
-                return [text]
-            }
-
-            for (let item of lines) {
-                if (pattern.test(item)) {
-                    let value = item.replace(pattern, '')
-                    data.push(value)
-                }
-            }
-            return data
         }
     }
 }

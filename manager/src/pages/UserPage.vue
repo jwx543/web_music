@@ -227,10 +227,10 @@ export default {
         addUser () {
             let datetime = this.getTime(this.registerForm.birth)
             let params = new URLSearchParams()
-            params.append('username', this.registerForm.username)
-            params.append('password', this.registerForm.password)
             params.append('sex', this.registerForm.sex)
             params.append('phone_num', this.registerForm.phoneNum)
+            params.append('username', this.registerForm.username)
+            params.append('password', this.registerForm.password)
             params.append('email', this.registerForm.email)
             params.append('birth', datetime)
             params.append('introduction', this.registerForm.introduction)

@@ -41,9 +41,9 @@ export default {
     props: ['id'],
     data(){
         return{
-            tableData: [],
             Temp: [],
             tempId: [],
+            tableData: [],
             multipleSelection: [],
             delVisible: false,
             search_word: '',
@@ -66,6 +66,17 @@ export default {
     },
     methods: {
 
+        getSongList (id) {
+            HttpHandler.getSongId(id)
+                .then(res => {
+                    this.tableData.push(res[0])
+                    this.Temp.push(res[0])
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+        },
+
         getData () {
             HttpHandler.getUserCollection(this.$route.query.id)
                 .then(res => {
@@ -73,17 +84,6 @@ export default {
                     for (let item of res) {
                         this.getSongList(item.songId)
                     }
-                })
-                .catch(err => {
-                    console.error(err)
-                })
-        },
-
-        getSongList (id) {
-            HttpHandler.getSongId(id)
-                .then(res => {
-                    this.tableData.push(res[0])
-                    this.Temp.push(res[0])
                 })
                 .catch(err => {
                     console.error(err)

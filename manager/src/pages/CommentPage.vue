@@ -41,19 +41,19 @@ export default {
     },
     data () {
         return {
+            multipleSelection: [],
             tableData: [],
             tempDate: [],
-            multipleSelection: [],
-            editVisible: false,
             delVisible: false,
+            editVisible: false,
             select_word: '',
             form: {
-                id: '',
-                userId: '',
-                songId: '',
                 songListId: '',
+                id: '',
                 content: '',
                 type: '',
+                songId: '',
+                userId: '',
                 up: ''
             },
             idx: -1
@@ -77,44 +77,15 @@ export default {
         this.getData()
     },
     methods: {
-        getData () {
-            this.tableData = []
-            this.tempDate = []
-            let promise
-            if (this.$route.query.type === 0) {
-                promise = HttpHandler.getCommentSongId(this.$route.query.id)
-            } else if (this.$route.query.type === 1) {
-                promise = HttpHandler.getCommentSongListId(this.$route.query.id)
-            }
-            console.log('promise', promise)
-            promise.then(res => {
-                for (let item of res) {
-                    this.getUsers(item.userId, item)
-                }
-            })
-        },
-
-        getUsers (id, item) {
-            HttpHandler.getUserId(id)
-                .then(res => {
-                    let o = item
-                    o.name = res[0].username
-                    this.tableData.push(o)
-                    this.tempDate.push(o)
-                })
-                .catch(err => {
-                    console.error(err)
-                })
-        },
 
         doEdit (row) {
             this.idx = row.id
             this.form = {
                 id: row.id,
-                userId: row.userId,
-                songId: row.songId,
                 songListId: row.songListId,
+                songId: row.songId,
                 content: row.content,
+                userId: row.userId,
                 type: row.type,
                 up: row.up
             }
@@ -123,10 +94,10 @@ export default {
 
         saveEdit () {
             let params = new URLSearchParams()
-            params.append('id', this.form.id)
-            params.append('userId', this.form.userId)
             params.append('songId', this.form.songId === null ? '' : this.form.songId)
             params.append('songListId', this.form.songId === null ? '' : this.form.songListId)
+            params.append('id', this.form.id)
+            params.append('userId', this.form.userId)
             params.append('content', this.form.content)
             params.append('type', this.form.type)
             params.append('up', this.form.up)
@@ -149,6 +120,36 @@ export default {
                     console.error(err)
                 })
             this.editVisible = false
+        },
+
+        getUsers (id, item) {
+            HttpHandler.getUserId(id)
+                .then(res => {
+                    let o = item
+                    o.name = res[0].username
+                    this.tableData.push(o)
+                    this.tempDate.push(o)
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+        },
+
+        getData () {
+            this.tableData = []
+            this.tempDate = []
+            let promise
+            if (this.$route.query.type === 0) {
+                promise = HttpHandler.getCommentSongId(this.$route.query.id)
+            } else if (this.$route.query.type === 1) {
+                promise = HttpHandler.getCommentSongListId(this.$route.query.id)
+            }
+            console.log('promise', promise)
+            promise.then(res => {
+                for (let item of res) {
+                    this.getUsers(item.userId, item)
+                }
+            })
         },
 
         deleteRow () {
