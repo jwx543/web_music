@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent, getCurrentInstance, ref, toRefs } from "vue";
-import YinIcon from "@/components/layouts/YinIcon.vue";
+import YinIcon from "@/components/layouts/Icon.vue";
 import mixin from "@/mixins/mixin";
 import { ICON } from "@/enums";
 

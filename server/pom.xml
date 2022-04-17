@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>yin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Yin-music</name>
+    <name>web-music</name>
     <description>music-website project for Spring Boot</description>
 
     <properties>
@@ -158,7 +158,7 @@
                     <!--增加jvm参数-->
                     <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
                     <!--指定入口类-->
-                    <mainClass> com.example.yin.YinMusicApplication</mainClass>
+                    <mainClass>com.nju.server.MusicApplication</mainClass>
                 </configuration>
             </plugin>
 
@@ -180,33 +180,6 @@
 <!--                </configuration>-->
             </plugin>
 
-            <!--            <plugin>-->
-            <!--            &lt;!&ndash;Mybatis-generator插件,用于自动生成Mapper和POJO&ndash;&gt;-->
-            <!--            <groupId>org.mybatis.generator</groupId>-->
-            <!--            <artifactId>mybatis-generator-maven-plugin</artifactId>-->
-            <!--            <version>1.3.2</version>-->
-            <!--            <configuration>-->
-            <!--            &lt;!&ndash;配置文件的位置&ndash;&gt;-->
-            <!--            <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>-->
-            <!--            <verbose>true</verbose>-->
-            <!--            <overwrite>true</overwrite>-->
-            <!--            </configuration>-->
-            <!--            <executions>-->
-            <!--            <execution>-->
-            <!--            <id>Generate MyBatis Artifacts</id>-->
-            <!--            <goals>-->
-            <!--            <goal>generate</goal>-->
-            <!--            </goals>-->
-            <!--            </execution>-->
-            <!--            </executions>-->
-            <!--            <dependencies>-->
-            <!--            <dependency>-->
-            <!--            <groupId>org.mybatis.generator</groupId>-->
-            <!--            <artifactId>mybatis-generator-core</artifactId>-->
-            <!--            <version>1.3.2</version>-->
-            <!--            </dependency>-->
-            <!--            </dependencies>-->
-            <!--            </plugin>-->
 
         </plugins>
     </build>

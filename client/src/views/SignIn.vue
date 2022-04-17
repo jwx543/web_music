@@ -37,7 +37,7 @@ import {
   onMounted,
 } from "vue";
 import mixin from "@/mixins/mixin";
-import YinLoginLogo from "@/components/layouts/YinLoginLogo.vue";
+import YinLoginLogo from "@/components/layouts/LoginLogo.vue";
 import { HttpManager } from "@/api";
 import { NAV_NAME, HOME, SIGN_UP } from "@/enums";
 

@@ -1,0 +1,19 @@
+package com.nju.server.common;
+
+import com.alibaba.fastjson.JSONObject;
+
+public class ErrorMessage {
+    JSONObject jsonObject = new JSONObject();
+
+    public ErrorMessage(String message) {
+        jsonObject.put("code", 500);
+        jsonObject.put("message", message);
+        jsonObject.put("success", false);
+        jsonObject.put("type", "error");
+        jsonObject.put("data", null);
+    }
+
+    public JSONObject getMessage() {
+        return jsonObject;
+    }
+}

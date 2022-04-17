@@ -49,7 +49,7 @@ import {
   onMounted,
 } from "vue";
 import { useStore } from "vuex";
-import YinIcon from '@/components/layouts/YinIcon.vue'
+import YinIcon from '@/components/layouts/Icon.vue'
 import mixin from '@/mixins/mixin'
 import { HttpManager } from '@/api'
 import { ICON } from '@/enums'

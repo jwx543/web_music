@@ -1,0 +1,6 @@
+projectKey=client
+serverUrl=http://localhost:9090
+serverVersion=7.4.0.18908
+dashboardUrl=http://localhost:9090/dashboard?id=client
+ceTaskId=AYA3w4WtFP9SDw6NEWL7
+ceTaskUrl=http://localhost:9090/api/ce/task?id=AYA3w4WtFP9SDw6NEWL7

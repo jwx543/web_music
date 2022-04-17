@@ -1,0 +1,6 @@
+projectKey=manager
+serverUrl=http://localhost:9090
+serverVersion=7.4.0.18908
+dashboardUrl=http://localhost:9090/dashboard?id=manager
+ceTaskId=AYA3qyrQFP9SDw6NEWKB
+ceTaskUrl=http://localhost:9090/api/ce/task?id=AYA3qyrQFP9SDw6NEWKB

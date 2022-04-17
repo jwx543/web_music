@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'yin-container',
-    component: () => import('@/views/YinContainer.vue'),
+    component: () => import('@/views/Container.vue'),
     children: [
       {
         path: '/',
